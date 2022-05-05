@@ -20,8 +20,7 @@ submit.addEventListener('click', function(){
 			<div class='country__name'>${data[0].name.common}</div>
 			<div class='content'>Region: ${data[0].region}</div>
 			<div class='content'>Capital: ${data[0].capital[0]}</div>
-			<div class='content'>Population: ${data[0].population}</div>
-			<div class='content'>Languages: ${data[0].languages.deu}</div>`;
+			<div class='content'>Population: ${data[0].population}</div>`;
 			container.innerHTML = html;
 
 		})
