@@ -1,7 +1,12 @@
 'use strict'
 let container = document.querySelector('.country')
-const whereAmI = function(lat, lng){
-	fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+const lat = document.querySelector('#latitude');
+const lng = document.querySelector('#longitute');
+const submit = document.querySelector('#submit');
+
+submit.addEventListener('click', function(){
+	const whereAmI = function(lat, lng){
+		fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
 		.then(res => res.json())
 		.then(data => {
 			console.log(`You are in ${data.city}, ${data.country}`);
@@ -10,6 +15,7 @@ const whereAmI = function(lat, lng){
 		.then(res => res.json())
 		.then(data => {
 			console.log(data[0])
+
 			const html = `<div><img id='flag-img' src="${data[0].flags.svg}" alt=""></div>
 			<div class='country__name'>${data[0].name.common}</div>
 			<div class='content'>Region: ${data[0].region}</div>
@@ -19,9 +25,12 @@ const whereAmI = function(lat, lng){
 			container.innerHTML = html;
 
 		})
-		.catch(err => console.error(err))
-}
+		.catch(err => alert('Please Try again'))
+	}
+	whereAmI(lat.value, lng.value);
 
-// whereAmI(52.508, 13.381)
-whereAmI(19.037, 72.873)
-// whereAmI(-33.933, 18.474)
+})
+
+
+
+
