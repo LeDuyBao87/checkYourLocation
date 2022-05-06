@@ -11,12 +11,12 @@ submit.addEventListener('click', function(){
 		fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
 		.then(res => res.json())
 		.then(data => {
-			console.log(`You are in ${data.city}, ${data.country}`);
+			alert(`You are in ${data.city}, ${data.country}`);
 			return fetch(`https://restcountries.com/v3.1/name/${data.country}`)
 		})
 		.then(res => res.json())
 		.then(data => {
-			console.log(data[0]);
+			console.log(data[0].borders[0]);
 			
 			const html = `<div class='country_flag'><img id='flag-img' src="${data[0].flags.svg}" alt=""></div>
 			<div class='country__name'>${data[0].name.common}</div>
@@ -25,7 +25,7 @@ submit.addEventListener('click', function(){
 			<div class='content'>Population: ${data[0].population}</div>`;
 			container.innerHTML = html;
 
-			return fetch(`https://restcountries.com/v3.1/name/${data[0].borders[0]}`)
+			return fetch(`https://restcountries.com/v3.1/alpha/${data[0].borders[0]}`)
 		})
 		.then(res => res.json())
 		.then(nei => {
@@ -37,7 +37,7 @@ submit.addEventListener('click', function(){
 			<div class='neighbour__content'>Population: ${nei[0].population}</div>`;
 			neighbour1.innerHTML = html;
 
-			return fetch(`https://restcountries.com/v3.1/name/${nei[0].borders[0]}`)
+			return fetch(`https://restcountries.com/v3.1/alpha/${nei[0].borders[0]}`)
 		})
 		.then(res => res.json())
 		.then(nei2 => {
